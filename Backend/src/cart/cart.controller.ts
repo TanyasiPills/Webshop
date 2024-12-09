@@ -7,9 +7,9 @@ import { UpdateCartDto } from './dto/update-cart.dto';
 export class CartController {
   constructor(private readonly cartService: CartService) {}
 
-  @Post()
-  create(@Body() createCartDto: CreateCartDto) {
-    return this.cartService.create(createCartDto);
+  @Post(':id')
+  create(@Body() createCartDto: CreateCartDto, @Param('id') id: string) {
+    return this.cartService.create(createCartDto, +id);
   }
 
   @Get()
@@ -22,9 +22,14 @@ export class CartController {
     return this.cartService.findOne(+id);
   }
 
+  @Patch(':id/:itemId')
+  AddItem(@Param('id') id: string,@Param('itemId') itemId: string) {
+    return this.cartService.addItem(+id, +itemId);
+  }
+
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateCartDto: UpdateCartDto) {
-    return this.cartService.update(+id, updateCartDto);
+  RemoveItem(@Param('id') id: string,@Param('itemId') itemId: string) {
+    return this.cartService.removeItem(+id, +itemId);
   }
 
   @Delete(':id')

@@ -7,5 +7,5 @@ export class CreateCartDto {
     user: User
 
     @IsNotEmpty()
-    item: ShopItem[]
+    item?: ShopItem[]
 }
