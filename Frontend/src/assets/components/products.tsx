@@ -4,7 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 export type Item = {
     id: number;
     name: string;
-    purity: string;
+    purity: number;
     price: number;
     rating: number;
 }
@@ -41,7 +41,7 @@ export function ProductListing(){
                             <div className="card">
                                 <div className="card-body">
                                     <h5 className="card-title">{item.name}</h5>
-                                    <h6 className="card-subtitle mb-2 text-muted">Purity: {item.purity}</h6>
+                                    <h6 className="card-subtitle mb-2 text-muted">Purity: {(item.purity*100).toFixed(1)}%</h6>
                                     <p className="card-text">Price: ${item.price.toFixed(2)}</p>
                                     <p className="card-text">Rating: {item.rating} / 5</p>
                                     <button className="btn btn-primary">Add to Cart</button>

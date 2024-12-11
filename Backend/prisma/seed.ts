@@ -16,7 +16,7 @@ async function main() {
     await prisma.shopItem.create({
         data: {
             name: faker.science.chemicalElement().name,
-            purity: faker.number.float(),
+            purity: faker.number.float({min: 0.7}),
             price: faker.number.int({min: 1500, max: 25000}),
             rating: faker.number.int({min: 1, max:5})
 

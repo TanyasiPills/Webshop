@@ -1,5 +1,4 @@
 import { Container, Nav, Navbar } from 'react-bootstrap';
-import { Outlet } from 'react-router-dom';
 
 export function NavBar (){
   return (<><Navbar bg="dark" variant="dark" expand="lg">
@@ -16,5 +15,4 @@ export function NavBar (){
         </Nav>
       </Navbar.Collapse>
     </Container>
-  </Navbar>
-  <Outlet/></>);}
+  </Navbar></>);}
