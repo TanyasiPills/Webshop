@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Req } from '@nestjs/common';
 import { CartService } from './cart.service';
 import { CreateCartDto } from './dto/create-cart.dto';
 import { UpdateCartDto } from './dto/update-cart.dto';
@@ -23,7 +23,8 @@ export class CartController {
   }
 
   @Patch(':id/:itemId')
-  AddItem(@Param('id') id: string,@Param('itemId') itemId: string) {
+  AddItem(@Req() req,@Param('itemId') itemId: string) {
+    const id = req.user.sub;
     return this.cartService.addItem(+id, +itemId);
   }
 

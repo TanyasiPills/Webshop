@@ -22,6 +22,28 @@ export function ProductListing(){
         setData(await response.json());
     }
 
+    async function addToCart(id : number){
+        const userId = 123; // Replace with the actual user ID, if applicable.
+
+        try {
+            const response = await fetch(`/cart/${userId}/${id}`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+    
+            if (!response.ok) {
+                throw new Error(`Error adding item to cart: ${response.statusText}`);
+            }
+    
+            const data = await response.json();
+            console.log("Item successfully added to cart:", data);
+        } catch (error) {
+            console.error("Failed to add item to cart:", error);
+        }
+    }
+
     return(<>
         <div className="container my-4">
             <h1 className="mb-4">Product Listing</h1>
@@ -44,7 +66,7 @@ export function ProductListing(){
                                     <h6 className="card-subtitle mb-2 text-muted">Purity: {(item.purity*100).toFixed(1)}%</h6>
                                     <p className="card-text">Price: ${item.price.toFixed(2)}</p>
                                     <p className="card-text">Rating: {item.rating} / 5</p>
-                                    <button className="btn btn-primary">Add to Cart</button>
+                                    <button className="btn btn-primary" onClick={() => addToCart(item.id)}>Add to Cart</button>
                                 </div>
                             </div>
                         </div>
