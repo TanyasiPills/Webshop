@@ -27,4 +27,12 @@ export class UserService {
   remove(id: number) {
     return this.db.user.delete({where: {id}});
   }
+
+  async findUser(identification : string){
+    const stuff1 = await this.db.user.findFirst({where: {username: identification}});
+    const stuff2 = await this.db.user.findFirst({where: {email: identification}});
+    if(stuff1) return stuff1;
+    else if(stuff2) return stuff2;
+    else return undefined;
+  }
 }
