@@ -5,21 +5,12 @@ const prisma = new PrismaClient()
 
 async function main() {
   for (let i = 0; i < 50; i++) {
-    const free = Math.random() < 0.25;
-    await prisma.user.create({
-      data: {
-        username: faker.internet.username(),
-        password: faker.internet.password(),
-        email: faker.internet.email()
-      }
-    })
     await prisma.shopItem.create({
         data: {
             name: faker.science.chemicalElement().name,
             purity: faker.number.float({min: 0.7}),
             price: faker.number.int({min: 1500, max: 25000}),
             rating: faker.number.int({min: 1, max:5})
-
         }
     });
   }

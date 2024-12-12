@@ -9,10 +9,11 @@ import {
   import { IS_PUBLIC_KEY, jwtConstants } from './constants';
   import { Request } from 'express';
 import { Reflector } from '@nestjs/core';
+import { AuthService } from './auth.service';
   
   @Injectable()
   export class AuthGuard implements CanActivate {
-    constructor(private jwtService: JwtService, private reflector: Reflector) {}
+    constructor(private jwtService: JwtService, private reflector: Reflector,private authService: AuthService) {}
   
     async canActivate(context: ExecutionContext): Promise<boolean> {
         const isPublic = this.reflector.getAllAndOverride<boolean>(IS_PUBLIC_KEY, [
@@ -44,6 +45,7 @@ import { Reflector } from '@nestjs/core';
 
             request['user'] = payload;
         } catch {
+          await this.authService.deleteToken(token);
           throw new UnauthorizedException();
         }
         return true;
