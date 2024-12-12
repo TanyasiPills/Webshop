@@ -13,7 +13,6 @@ export class AuthService {
     identification: string,
     pass: string,
   ): Promise<{ access_token: string }> {
-    console.log("fak u");
     
     const user = await this.usersService.findUser(identification);
     if (user?.password !== pass) {
@@ -23,5 +22,16 @@ export class AuthService {
     return {
       access_token: await this.jwtService.signAsync(payload),
     };
+  }
+  async getUserFromToken(token: string) {
+    try {
+      const decoded = this.jwtService.decode(token) as { sub: number };
+      if (!decoded || !decoded.sub) {
+        throw new UnauthorizedException();
+      }
+      return decoded.sub;
+    } catch (error) {
+      throw new UnauthorizedException('Invalid token');
+    }
   }
 }
