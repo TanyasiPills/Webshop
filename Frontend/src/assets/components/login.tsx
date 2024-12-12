@@ -3,6 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 export function Login() {
     const [identification, setIdentification] = useState("");
+    const [password, setPassword] = useState("");
     const [successMessage, setSuccessMessage] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
 
@@ -14,7 +15,7 @@ export function Login() {
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ identification }),
+                body: JSON.stringify({ stuff: identification, pass: password }),
             });
 
             if (!response.ok) {
@@ -61,6 +62,19 @@ export function Login() {
                         id="identification"
                         value={identification}
                         onChange={(e) => setIdentification(e.target.value)}
+                        required
+                    />
+                </div>
+                <div className="mb-3">
+                    <label htmlFor="identification" className="form-label">
+                        Password
+                    </label>
+                    <input
+                        type="text"
+                        className="form-control"
+                        id="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
                         required
                     />
                 </div>

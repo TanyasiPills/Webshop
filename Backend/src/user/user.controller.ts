@@ -36,7 +36,7 @@ export class UserController {
 
   @Public()
   @Post('login')
-  async findUser(@Body("identification") identification: string){
+  async findUser(@Body("identification") identification: string, @Body("pass") pass: string){
     const stuff = await this.userService.findUser(identification);
     if(stuff == undefined) throw new NotFoundException();
     return stuff;

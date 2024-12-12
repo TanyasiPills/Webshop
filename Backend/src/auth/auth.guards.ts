@@ -19,11 +19,17 @@ import { Reflector } from '@nestjs/core';
             context.getHandler(),
             context.getClass(),
         ]);
+        
         if (isPublic) {
             return true;
         }
 
         const request = context.switchToHttp().getRequest();
+
+        if (request.method === 'OPTIONS') {
+          return true;
+        }
+
         const token = this.extractTokenFromHeader(request);
         if (!token) {
           throw new UnauthorizedException();
