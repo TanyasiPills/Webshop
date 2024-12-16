@@ -1,5 +1,6 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export function Registering() {
     const [formData, setFormData] = useState({
@@ -10,6 +11,8 @@ export function Registering() {
 
     const [successMessage, setSuccessMessage] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
+
+    const navigate = useNavigate();
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
@@ -43,8 +46,9 @@ export function Registering() {
                 body: JSON.stringify({ token: data.access_token}),
             });
 
-            setSuccessMessage("Registration successful!");
+            setSuccessMessage("");
             setErrorMessage("");
+            navigate("/login");
         } catch (error) {
             console.error("Registration failed:", error);
             setErrorMessage("Registration failed. Please try again.");
@@ -53,9 +57,9 @@ export function Registering() {
     };
 
     return (
-        <div className="container my-4">
+        <div className="container my-4 d-flex flex-column justify-content-start" style={{ minHeight: '100vh' }}>
             <h1 className="mb-4">Register</h1>
-
+    
             {successMessage && (
                 <div className="alert alert-success" role="alert">
                     {successMessage}
@@ -66,7 +70,7 @@ export function Registering() {
                     {errorMessage}
                 </div>
             )}
-
+    
             <form onSubmit={handleSubmit}>
                 <div className="mb-3">
                     <label htmlFor="username" className="form-label">
@@ -82,7 +86,7 @@ export function Registering() {
                         required
                     />
                 </div>
-
+    
                 <div className="mb-3">
                     <label htmlFor="email" className="form-label">
                         Email
@@ -97,7 +101,7 @@ export function Registering() {
                         required
                     />
                 </div>
-
+    
                 <div className="mb-3">
                     <label htmlFor="password" className="form-label">
                         Password
@@ -112,11 +116,11 @@ export function Registering() {
                         required
                     />
                 </div>
-
+    
                 <button type="submit" className="btn btn-primary">
                     Register
                 </button>
             </form>
         </div>
-    );
+    );    
 }

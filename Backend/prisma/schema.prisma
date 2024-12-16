@@ -23,12 +23,6 @@ model User{
   shopCart ShopCart?
 }
 
-model Tokens{
-  id Int @id @default(autoincrement())
-  userId Int
-  token String @default("")
-}
-
 model ShopItem {
   id Int @id @default(autoincrement())
   name String

@@ -1,12 +1,15 @@
 import { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Cookies from 'universal-cookie';
+import { useNavigate } from "react-router-dom";
 
 export function Login() {
     const [identification, setIdentification] = useState("");
     const [password, setPassword] = useState("");
     const [successMessage, setSuccessMessage] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
+
+    const navigate = useNavigate();
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -30,6 +33,8 @@ export function Login() {
             const cookie = new Cookies();
             cookie.set("token", data.access_token);
             setSuccessMessage("Login Succesful");
+            setErrorMessage("");
+            navigate("/");
         } catch (error: any) {
             console.error("Login failed:", error);
             setErrorMessage(error.message || "Login failed. Please try again.");
@@ -38,9 +43,9 @@ export function Login() {
     };
 
     return (
-        <div className="container my-4">
+        <div className="container my-4 d-flex flex-column justify-content-start" style={{ minHeight: '100vh' }}>
             <h1 className="mb-4">Login</h1>
-
+    
             {successMessage && (
                 <div className="alert alert-success" role="alert">
                     {successMessage}
@@ -51,7 +56,7 @@ export function Login() {
                     {errorMessage}
                 </div>
             )}
-
+    
             <form onSubmit={handleSubmit}>
                 <div className="mb-3">
                     <label htmlFor="identification" className="form-label">
@@ -67,11 +72,11 @@ export function Login() {
                     />
                 </div>
                 <div className="mb-3">
-                    <label htmlFor="identification" className="form-label">
+                    <label htmlFor="password" className="form-label">
                         Password
                     </label>
                     <input
-                        type="text"
+                        type="password"
                         className="form-control"
                         id="password"
                         value={password}
@@ -79,11 +84,12 @@ export function Login() {
                         required
                     />
                 </div>
-
+    
                 <button type="submit" className="btn btn-primary">
                     Login
                 </button>
             </form>
         </div>
     );
+    
 }

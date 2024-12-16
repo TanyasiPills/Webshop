@@ -8,6 +8,7 @@ import { Public } from 'src/auth/constants';
 export class CartController {
   constructor(private readonly cartService: CartService) {}
 
+  @Public()
   @Post(':id')
   create(@Param('id') id: string) {
     return this.cartService.create(+id);
@@ -19,8 +20,8 @@ export class CartController {
   }
 
   @Patch(':id/:itemId')
-  AddItem(@Param('id') id: string,@Param('itemId') itemId: string) {
-    return this.cartService.addItem(+id, +itemId);
+  async AddItem(@Param('id') id: string,@Param('itemId') itemId: string) {
+    return await this.cartService.addItem(+id, +itemId);
   }
 
   @Delete(':id/:itemId')

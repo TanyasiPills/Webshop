@@ -22,8 +22,6 @@ export function Profile() {
         fetchdata();
     }, []);
 
-    console.log(userId);
-
     async function load(){
         try{
             const cookie = new Cookies();

@@ -14,6 +14,11 @@ export class UserController {
     return this.userService.create(createUserDto);
   }
 
+  @Get('loggedin')
+  something(){
+    return true;
+  }
+
   @Get()
   findAll() {
     return this.userService.findAll();
@@ -40,10 +45,5 @@ export class UserController {
     const stuff = await this.userService.findUser(identification);
     if(stuff == undefined) throw new NotFoundException();
     return stuff;
-  }
-
-  @Get('loggedin')
-  something(){
-    return true;
   }
 }
