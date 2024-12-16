@@ -41,4 +41,9 @@ export class UserController {
     if(stuff == undefined) throw new NotFoundException();
     return stuff;
   }
+
+  @Get('loggedin')
+  something(){
+    return true;
+  }
 }
