@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
+import Cookies from 'universal-cookie';
 
 export function Login() {
     const [identification, setIdentification] = useState("");
@@ -26,9 +27,8 @@ export function Login() {
             }
 
             const data = await response.json();
-            setSuccessMessage("Login successful!");
-            setErrorMessage("");
-            console.log("User Data:", data);
+            const cookie = new Cookies();
+            cookie.set("token", data.access_token);
         } catch (error: any) {
             console.error("Login failed:", error);
             setErrorMessage(error.message || "Login failed. Please try again.");

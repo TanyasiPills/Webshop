@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
+import Cookies from "universal-cookie"
 
 export type Item = {
     id: number;
@@ -23,22 +24,28 @@ export function ProductListing(){
     }
 
     async function addToCart(id : number){
-        const userId = 123; // Replace with the actual user ID, if applicable.
-
+        const cookie = new Cookies();
+        const tokenkun = cookie.get("token")
         try {
-            const response = await fetch(`/cart/${userId}/${id}`, {
-                method: 'PATCH',
+            const reresponse = await fetch(`http://localhost:3000/auth/id`, {
+                method: "POST",
                 headers: {
-                    'Content-Type': 'application/json',
+                    "Content-Type": "application/json",
+                    'Authorization': `Bearer ${tokenkun}`,
+                },
+                body: JSON.stringify({ token: tokenkun}),
+            });
+            let userid = await reresponse.json()                            
+            
+            const response = await fetch(`http://localhost:3000/cart/${userid}/${id}`,{
+                method: "PATCH",
+                headers: {
+                    "Content-Type": "application/json",
+                    'Authorization': `Bearer ${tokenkun}`,
                 },
             });
-    
-            if (!response.ok) {
-                throw new Error(`Error adding item to cart: ${response.statusText}`);
-            }
-    
             const data = await response.json();
-            console.log("Item successfully added to cart:", data);
+            console.log(data);
         } catch (error) {
             console.error("Failed to add item to cart:", error);
         }

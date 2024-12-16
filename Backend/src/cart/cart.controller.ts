@@ -2,19 +2,15 @@ import { Controller, Get, Post, Body, Patch, Param, Delete, Req } from '@nestjs/
 import { CartService } from './cart.service';
 import { CreateCartDto } from './dto/create-cart.dto';
 import { UpdateCartDto } from './dto/update-cart.dto';
+import { Public } from 'src/auth/constants';
 
 @Controller('cart')
 export class CartController {
   constructor(private readonly cartService: CartService) {}
 
   @Post(':id')
-  create(@Body() createCartDto: CreateCartDto, @Param('id') id: string) {
-    return this.cartService.create(createCartDto, +id);
-  }
-
-  @Get()
-  findAll() {
-    return this.cartService.findAll();
+  create(@Param('id') id: string) {
+    return this.cartService.create(+id);
   }
 
   @Get(':id')
@@ -23,12 +19,11 @@ export class CartController {
   }
 
   @Patch(':id/:itemId')
-  AddItem(@Req() req,@Param('itemId') itemId: string) {
-    const id = req.user.sub;
+  AddItem(@Param('id') id: string,@Param('itemId') itemId: string) {
     return this.cartService.addItem(+id, +itemId);
   }
 
-  @Patch(':id')
+  @Delete(':id/:itemId')
   RemoveItem(@Param('id') id: string,@Param('itemId') itemId: string) {
     return this.cartService.removeItem(+id, +itemId);
   }

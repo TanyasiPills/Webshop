@@ -9,6 +9,7 @@ import { APP_GUARD } from '@nestjs/core';
 import { AuthGuard } from './auth.guards';
 import { TokenService } from 'src/token/token.service';
 import { TokenModule } from 'src/token/token.module';
+import { PrismaService } from 'src/prisma.service';
 
 @Module({
   imports: [
@@ -23,7 +24,7 @@ import { TokenModule } from 'src/token/token.module';
   providers: [{
     provide: APP_GUARD,
     useClass: AuthGuard,
-  },AuthService],
+  },AuthService,PrismaService],
   controllers: [AuthController],
   exports: [AuthService],
 })

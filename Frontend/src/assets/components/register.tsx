@@ -32,7 +32,17 @@ export function Registering() {
             }
 
             const data = await response.json();
-            console.log(data);
+            console.log(data.id);
+            
+            await fetch(`http://localhost:3000/cart/${data.id}`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    'Authorization': `Bearer ${data.access_token}`,
+                },
+                body: JSON.stringify({ token: data.access_token}),
+            });
+
             setSuccessMessage("Registration successful!");
             setErrorMessage("");
         } catch (error) {

@@ -14,7 +14,7 @@ export class AuthController {
     return this.authService.signIn(stuff, pass);
   }
   @HttpCode(HttpStatus.OK)
-  @Get('id')
+  @Post('id')
   getUser(@Body("token") token: string) {  
     return this.authService.getUserFromToken(token);
   }

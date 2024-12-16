@@ -35,7 +35,7 @@ model ShopItem {
   purity Decimal @db.Decimal(4,3)
   price Int
   rating Int @default(3)
-  shopcarts ShopCart[]
+  shopcarts ShopCart[] @relation("ShopCartItems")
 }
 
 model ShopCart {
@@ -44,5 +44,5 @@ model ShopCart {
   user User @relation(fields: [userId], references: [id], onUpdate: Cascade)
   userId Int @unique
 
-  items ShopItem[]
+  items ShopItem[] @relation("ShopCartItems")
 }
