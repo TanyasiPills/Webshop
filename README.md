@@ -29,4 +29,4 @@ npm run dev
 
 ## Megjegyzés
 
-ha valami hiba kerül fel futtatáskor van felvételem múködőképes verzió teszteléséről
+ha valami hiba kerül fel futtatáskor van felvételem működőképes verzió teszteléséről
