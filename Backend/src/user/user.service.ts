@@ -21,7 +21,7 @@ export class UserService {
   }
 
   update(id: number, updateUserDto: UpdateUserDto) {
-    return this.db.user.update({where: {id}, data: updateUserDto});
+    return this.db.user.update({where: {id: id}, data: updateUserDto});
   }
 
   remove(id: number) {

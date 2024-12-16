@@ -29,6 +29,7 @@ export function Login() {
             const data = await response.json();
             const cookie = new Cookies();
             cookie.set("token", data.access_token);
+            setSuccessMessage("Login Succesful");
         } catch (error: any) {
             console.error("Login failed:", error);
             setErrorMessage(error.message || "Login failed. Please try again.");
