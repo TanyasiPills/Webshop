@@ -1,5 +1,7 @@
 # Futtatás
 
+xampp fusson a háttérben(mysql, apache)
+
 Clone-olás után két terminált érdemes megnyitni:
 -   Frontend: terminálnyitás -> cd .\FrontEnd\
 -   Backend: terminálnyitás -> cd .\BackEnd\
@@ -24,3 +26,7 @@ npm run start
 ```
 npm run dev
 ```
+
+##Megjegyzés
+
+ha valami hiba kerül fel futtatáskor van felvételem múködőképes verzió teszteléséről
