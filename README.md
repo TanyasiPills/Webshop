@@ -27,6 +27,6 @@ npm run start
 npm run dev
 ```
 
-##Megjegyzés
+## Megjegyzés
 
 ha valami hiba kerül fel futtatáskor van felvételem múködőképes verzió teszteléséről
