@@ -118,7 +118,7 @@ export function Cart() {
     }
 
     return (
-        <div className="container my-4">
+        <div className="container my-4 d-flex flex-column justify-content-start" style={{ minHeight: '100vh', minWidth: '70vw' }}>
             <h1 className="mb-4">Your Cart</h1>
 
             <button className="btn btn-danger mb-3" onClick={clearCart}>Clear Cart</button>

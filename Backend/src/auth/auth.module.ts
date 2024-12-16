@@ -7,14 +7,11 @@ import { AuthController } from './auth.controller';
 import { jwtConstants } from './constants';
 import { APP_GUARD } from '@nestjs/core';
 import { AuthGuard } from './auth.guards';
-import { TokenService } from 'src/token/token.service';
-import { TokenModule } from 'src/token/token.module';
 import { PrismaService } from 'src/prisma.service';
 
 @Module({
   imports: [
     UserModule,
-    TokenModule,
     JwtModule.register({
       global: true,
       secret: jwtConstants.secret,

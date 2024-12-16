@@ -29,6 +29,7 @@ export function NavBar (){
         throw new Error(`Error: ${response.statusText}`);
     }
     setLoggedin(true)
+    console.log(loggedin);
     } 
     catch(error){
       console.log(error);
@@ -36,7 +37,7 @@ export function NavBar (){
   }
 
   return (<>
-  <div className='container-fluid'>
+  <div className='container-fluid' >
   <Navbar bg="dark" variant="dark" expand="lg">
     <Container fluid style={{ width: '100%' }}>
       <Navbar.Brand href="/">Chemicals.com</Navbar.Brand>

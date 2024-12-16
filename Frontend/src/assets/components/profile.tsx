@@ -92,7 +92,7 @@ export function Profile() {
     };
 
     return (
-        <div className="container my-4">
+        <div className="container my-4 d-flex flex-column justify-content-start" style={{ minHeight: '100vh', minWidth: '70vw' }}>
             <h1 className="mb-4">Profil szerlesztés</h1>
 
             {successMessage && (

@@ -57,7 +57,7 @@ export function Registering() {
     };
 
     return (
-        <div className="container my-4 d-flex flex-column justify-content-start" style={{ minHeight: '100vh' }}>
+        <div className="container my-4 d-flex flex-column justify-content-start" style={{ minHeight: '100vh', minWidth: '70vw' }}>
             <h1 className="mb-4">Register</h1>
     
             {successMessage && (

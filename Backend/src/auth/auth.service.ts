@@ -2,7 +2,6 @@ import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { UserService } from '../user/user.service';
 import { JwtService } from '@nestjs/jwt';
 import { PrismaService } from 'src/prisma.service';
-import { TokenService } from 'src/token/token.service';
 
 @Injectable()
 export class AuthService {
@@ -10,7 +9,6 @@ export class AuthService {
     private usersService: UserService,
     private jwtService: JwtService,
     private readonly db: PrismaService,
-    private tokenService: TokenService
   ) {}
 
   async signIn(
@@ -26,7 +24,6 @@ export class AuthService {
     }
     const payload = { sub: user.id, username: user.username };
     const token = await this.jwtService.signAsync(payload)
-    this.tokenService.createToken(user.id, token);
     return {
       access_token: token,
     };
@@ -43,6 +40,5 @@ export class AuthService {
     }
   }
   async deleteToken(token: string): Promise<void> {
-    await this.tokenService.remove(token);
   }
 }

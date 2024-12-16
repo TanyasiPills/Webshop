@@ -52,7 +52,7 @@ export function ProductListing(){
     }
 
     return(<>
-        <div className="container my-4">
+        <div className="container my-4" style={{ minHeight: '100vh', minWidth: '70vw' }}>
             <h1 className="mb-4">Product Listing</h1>
 
             <div className="mb-3">
